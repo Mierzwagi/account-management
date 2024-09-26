@@ -1,6 +1,7 @@
 import express  from "express";
 import bodyParser from "body-parser";
-import {router} from './routes/routers';
+import { routerUser } from './routes/usersRoutes';
+import { routerAccount } from './routes/accountRoutes'
 import {db} from './db/conection';
 
 
@@ -9,7 +10,8 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 
-app.use('/users', router);
+app.use('/users', routerUser);
+app.use('/account', routerAccount)
 
 // Conectando ao banco de dados
 db.authenticate()

@@ -6,9 +6,6 @@ export const signUpUser = async(req: Request, res: Response ) => {
     const { email, name }: { email: string; name: string; } = req.body;
 
       try{
-        //Criando um novo usuário
-        const newUser = await User.create({name, email})
-
         //verificando se ele já existe
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
@@ -16,6 +13,9 @@ export const signUpUser = async(req: Request, res: Response ) => {
             message: 'Usuário já existe!',
           });
         }
+
+        //Criando um novo usuário
+        const newUser = await User.create({name, email})
 
         //Sanvalndo o user
         const savedUser = await newUser.save();
