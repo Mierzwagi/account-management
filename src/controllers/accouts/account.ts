@@ -42,3 +42,21 @@ export const getAccounts = async( res: Response ) => {
     }
 };
 
+export const dellAccounts = async( res: Response ) => {
+    
+  try{
+    const accounts = await Account.findAll();
+
+    return res.status(200).json({
+        message: 'Produtos encontratos com sucesso',
+        result: accounts,
+      });
+  }catch(error) {
+      
+    return res.status(500).json({
+        message: 'Erro ao cadastrar conta',
+        result: error,
+      });
+  }
+};
+
